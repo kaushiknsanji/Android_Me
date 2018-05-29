@@ -42,6 +42,9 @@ public class BodyPartFragment extends Fragment {
     private List<Integer> mImageIds;
     private int mListIndex;
 
+    // The ImageView component of the Fragment
+    private ImageView mImageView;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the fragment
      */
@@ -64,16 +67,16 @@ public class BodyPartFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
 
         // Get a reference to the ImageView in the fragment layout
-        final ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
+        mImageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
 
         // If a list of image ids exists, set the image resource to the correct item in that list
         // Otherwise, create a Log statement that indicates that the list was not found
         if(mImageIds != null){
             // Set the image resource to the list item at the stored index
-            imageView.setImageResource(mImageIds.get(mListIndex));
+            mImageView.setImageResource(mImageIds.get(mListIndex));
 
             // Set a click listener on the image view
-            imageView.setOnClickListener(new View.OnClickListener() {
+            mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // Increment position as long as the index remains <= the size of the image ids list
@@ -84,7 +87,7 @@ public class BodyPartFragment extends Fragment {
                         mListIndex = 0;
                     }
                     // Set the image resource to the new list item
-                    imageView.setImageResource(mImageIds.get(mListIndex));
+                    mImageView.setImageResource(mImageIds.get(mListIndex));
                 }
             });
 
@@ -105,6 +108,12 @@ public class BodyPartFragment extends Fragment {
 
     public void setListIndex(int index) {
         mListIndex = index;
+    }
+
+    public void showListIndex(int index) {
+        mListIndex = index;
+        // Set the image resource to the new list item
+        mImageView.setImageResource(mImageIds.get(mListIndex));
     }
 
     /**

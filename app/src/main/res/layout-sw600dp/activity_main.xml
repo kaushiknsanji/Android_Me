@@ -17,6 +17,12 @@ This means creating a new layout folder for tablet screens and another activity_
         android:layout_width="400dp"
         android:layout_height="match_parent" />
 
+    <!-- A small divider -->
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray" />
+
     <!-- LinearLayout for holding three Android-Me images -->
     <LinearLayout
         android:id="@+id/android_me_linear_layout"
